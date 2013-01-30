@@ -352,26 +352,6 @@
     <resources>
         <image name="navbar-nullmonkey-title.png" width="154" height="25"/>
     </resources>
-    <classes>
-        <class className="NMDemoTVC" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NMDemoTVC.h"/>
-            <relationships>
-                <relationship kind="action" name="labelSliderChanged:" candidateClass="NMRangeSlider"/>
-                <relationship kind="outlet" name="labelSlider" candidateClass="NMRangeSlider"/>
-                <relationship kind="outlet" name="lowerLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="metalSlider" candidateClass="NMRangeSlider"/>
-                <relationship kind="outlet" name="setValuesSlider" candidateClass="NMRangeSlider"/>
-                <relationship kind="outlet" name="standardSlider" candidateClass="NMRangeSlider"/>
-                <relationship kind="outlet" name="steppedContinuouslySlider" candidateClass="NMRangeSlider"/>
-                <relationship kind="outlet" name="steppedSlider" candidateClass="NMRangeSlider"/>
-                <relationship kind="outlet" name="upperLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="verticalSlider" candidateClass="NMRangeSlider"/>
-            </relationships>
-        </class>
-        <class className="NMRangeSlider" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NMRangeSlider.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
