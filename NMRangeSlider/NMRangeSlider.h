@@ -54,6 +54,8 @@
 // If they are not set, then the default images are used.
 // eg viewDidLoad
 
+@property (retain, nonatomic) UIImageView* lowerHandle;
+@property (retain, nonatomic) UIImageView* upperHandle;
 
 //Probably should add support for all control states... Anyone?
 
