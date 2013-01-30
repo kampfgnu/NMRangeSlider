@@ -13,6 +13,7 @@
 @interface NMDemoTVC : UITableViewController
 
 @property (weak, nonatomic) IBOutlet NMRangeSlider *standardSlider;
+@property (weak, nonatomic) IBOutlet NMRangeSlider *verticalSlider;
 @property (weak, nonatomic) IBOutlet NMRangeSlider *metalSlider;
 @property (weak, nonatomic) IBOutlet NMRangeSlider *steppedSlider;
 @property (weak, nonatomic) IBOutlet NMRangeSlider *steppedContinuouslySlider;

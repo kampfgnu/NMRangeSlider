@@ -30,6 +30,7 @@
     [self configureSetValueSlider];
     [self configureSteppedSlider];
     [self configureSteppedSliderAlternative];
+    [self configureVerticalSlider];
 }
 
 
@@ -70,6 +71,27 @@
 {
     self.standardSlider.lowerValue = 0.23;
     self.standardSlider.upperValue = 0.53;
+}
+
+#pragma mark -
+#pragma mark - Vertical Slider
+
+- (void) configureVerticalSlider
+{
+//    self.verticalSlider.lowerValue = 0.23;
+//    self.verticalSlider.upperValue = 0.53;
+    self.labelSlider.minimumValue = 0;
+    self.labelSlider.maximumValue = 1000;
+    
+    self.labelSlider.lowerValue = 0;
+    self.labelSlider.upperValue = 1000;
+    
+    self.labelSlider.minimumRange = 1;
+    
+    self.verticalSlider.isVertical = YES;
+    self.verticalSlider.themeName = @"khm";
+    self.verticalSlider.stepValue = 1/1000;
+    self.verticalSlider.stepValueContinuously = YES;
 }
 
 

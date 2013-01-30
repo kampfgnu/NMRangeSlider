@@ -11,6 +11,12 @@
 
 @interface NMRangeSlider : UIControl
 
+//If YES will draw vertical slider (and therefore use vertical images)
+@property(assign, nonatomic) BOOL isVertical;
+
+//theme name (for images)
+@property(nonatomic, strong) NSString *themeName;
+
 // default 0.0
 @property(assign, nonatomic) float minimumValue;
 

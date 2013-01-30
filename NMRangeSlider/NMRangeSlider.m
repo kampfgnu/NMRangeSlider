@@ -65,6 +65,10 @@
     
     _lowerValue = 0.0;
     _upperValue = 1.0;
+    
+    _isVertical = NO;
+    
+    _themeName = @"default";
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -107,12 +111,12 @@
     {
         value = roundf(value / _stepValueInternal) * _stepValueInternal;
     }
-
+    
     value = MIN(value, _maximumValue);
     value = MAX(value, _lowerValue+_minimumRange);
     
     _upperValue = value;
-
+    
     [self setNeedsLayout];
 }
 
@@ -155,7 +159,7 @@
     {
         setValuesBlock();
     }
-
+    
 }
 
 - (void)setLowerValue:(float)lowerValue animated:(BOOL) animated
@@ -174,8 +178,16 @@
 {
     if(_trackBackgroundImage==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-trackBackground"];
-        image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 5.0, 0.0, 5.0)];
+        NSString *name = @"trackBackground";
+        NSString *imageName = [NSString stringWithFormat:@"slider-%@-%@%@%@", _themeName, name, _isVertical ? @"-vertical" : @"", @""];
+        UIImage* image = [UIImage imageNamed:imageName];
+        if (_isVertical) {
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(5.0, 0.0, 5.0, 0.0)];
+        }
+        else {
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 5.0, 0.0, 5.0)];
+        }
+        
         _trackBackgroundImage = image;
     }
     
@@ -186,8 +198,15 @@
 {
     if(_trackImage==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-track"];
-        image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 7.0)];
+        NSString *name = @"track";
+        NSString *imageName = [NSString stringWithFormat:@"slider-%@-%@%@%@", _themeName, name, _isVertical ? @"-vertical" : @"", @""];
+        UIImage* image = [UIImage imageNamed:imageName];
+        if (_isVertical) {
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 0.0, 7.0, 0.0)];
+        }
+        else {
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 7.0)];
+        }
         _trackImage = image;
     }
     
@@ -198,7 +217,9 @@
 {
     if(_lowerHandleImageNormal==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-handle"];
+        NSString *name = @"handle-lower";
+        NSString *imageName = [NSString stringWithFormat:@"slider-%@-%@%@", _themeName, name, @""];
+        UIImage* image = [UIImage imageNamed:imageName];
         _lowerHandleImageNormal = image;
     }
     
@@ -209,7 +230,10 @@
 {
     if(_lowerHandleImageHighlighted==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-handle-highlighted"];
+        NSString *name = @"handle-lower";
+        NSString *imageName = [NSString stringWithFormat:@"slider-%@-%@%@", _themeName, name, @"-highlighted"];
+        UIImage* image = [UIImage imageNamed:imageName];
+        //        UIImage* image = [UIImage imageNamed:@"slider-default-handle-highlighted"];
         _lowerHandleImageHighlighted = image;
     }
     
@@ -220,7 +244,10 @@
 {
     if(_upperHandleImageNormal==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-handle"];
+        NSString *name = @"handle-upper";
+        NSString *imageName = [NSString stringWithFormat:@"slider-%@-%@%@", _themeName, name, @""];
+        UIImage* image = [UIImage imageNamed:imageName];
+        //        UIImage* image = [UIImage imageNamed:@"slider-khm-handle-upper"];
         _upperHandleImageNormal = image;
     }
     
@@ -231,7 +258,10 @@
 {
     if(_upperHandleImageHighlighted==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-handle-highlighted"];
+        NSString *name = @"handle-upper";
+        NSString *imageName = [NSString stringWithFormat:@"slider-%@-%@%@", _themeName, name, @"-highlighted"];
+        UIImage* image = [UIImage imageNamed:imageName];
+        //        UIImage* image = [UIImage imageNamed:@"slider-khm-handle-upper-highlighted"];
         _upperHandleImageHighlighted = image;
     }
     
@@ -256,6 +286,19 @@
     return value;
 }
 
+//Returns the lower value based on the Y potion
+//The return value is automatically adjust to fit inside the valid range
+-(float) lowerValueForCenterY:(float)y
+{
+    float _padding = _lowerHandle.frame.size.height/2.0f;
+    float value = _minimumValue + (y-_padding) / (self.frame.size.height-(_padding*2)) * (_maximumValue - _minimumValue);
+    
+    value = MAX(value, _minimumValue);
+    value = MIN(value, _upperValue - _minimumRange);
+    
+    return value;
+}
+
 //Returns the upper value based on the X potion
 //The return value is automatically adjust to fit inside the valid range
 -(float) upperValueForCenterX:(float)x
@@ -263,6 +306,20 @@
     float _padding = _upperHandle.frame.size.width/2.0;
     
     float value = _minimumValue + (x-_padding) / (self.frame.size.width-(_padding*2)) * (_maximumValue - _minimumValue);
+    
+    value = MIN(value, _maximumValue);
+    value = MAX(value, _lowerValue+_minimumRange);
+    
+    return value;
+}
+
+//Returns the upper value based on the Y potion
+//The return value is automatically adjust to fit inside the valid range
+-(float) upperValueForCenterY:(float)y
+{
+    float _padding = _upperHandle.frame.size.height/2.0;
+    
+    float value = _minimumValue + (y-_padding) / (self.frame.size.height-(_padding*2)) * (_maximumValue - _minimumValue);
     
     value = MIN(value, _maximumValue);
     value = MAX(value, _lowerValue+_minimumRange);
@@ -281,34 +338,55 @@
     {
         retValue.size.height=self.bounds.size.height;
     }
-
-    float xLowerValue = ((self.bounds.size.width - _lowerHandle.frame.size.width) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(_lowerHandle.frame.size.width/2.0f);
-    float xUpperValue = ((self.bounds.size.width - _upperHandle.frame.size.width) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(_upperHandle.frame.size.width/2.0f);
     
-    retValue.origin = CGPointMake(xLowerValue, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
-    retValue.size.width = xUpperValue-xLowerValue;
-
-    return retValue;
+    if (_isVertical) {
+        float yLowerValue = ((self.bounds.size.height - _lowerHandle.frame.size.height) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(_lowerHandle.frame.size.height/2.0f);
+        float yUpperValue = ((self.bounds.size.height - _upperHandle.frame.size.height) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(_upperHandle.frame.size.height/2.0f);
+        
+        retValue.origin = CGPointMake((self.bounds.size.width/2.0f) - (retValue.size.width/2.0f), yLowerValue);
+        retValue.size.height = yUpperValue-yLowerValue;
+        
+        return retValue;
+    }
+    else {
+        float xLowerValue = ((self.bounds.size.width - _lowerHandle.frame.size.width) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(_lowerHandle.frame.size.width/2.0f);
+        float xUpperValue = ((self.bounds.size.width - _upperHandle.frame.size.width) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(_upperHandle.frame.size.width/2.0f);
+        
+        retValue.origin = CGPointMake(xLowerValue, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
+        retValue.size.width = xUpperValue-xLowerValue;
+        
+        return retValue;
+    }
 }
 
 //returns the rect for the background image
- -(CGRect) trackBackgroundRect
+-(CGRect) trackBackgroundRect
 {
     CGRect trackBackgroundRect;
     
-    trackBackgroundRect.size = CGSizeMake(_trackBackgroundImage.size.width-4, _trackBackgroundImage.size.height);
+    if (_isVertical) {
+        trackBackgroundRect.size = CGSizeMake(_trackBackgroundImage.size.width, _trackBackgroundImage.size.height-4);
+    }
+    else {
+        trackBackgroundRect.size = CGSizeMake(_trackBackgroundImage.size.width-4, _trackBackgroundImage.size.height);
+    }
     
     if(_trackBackgroundImage.capInsets.top || _trackBackgroundImage.capInsets.bottom)
     {
-        trackBackgroundRect.size.height=self.bounds.size.height;
+        trackBackgroundRect.size.height=self.bounds.size.height - (_isVertical ? 4 : 0);
     }
     
     if(_trackBackgroundImage.capInsets.left || _trackBackgroundImage.capInsets.right)
     {
-        trackBackgroundRect.size.width=self.bounds.size.width-4;
+        trackBackgroundRect.size.width=self.bounds.size.width - (_isVertical ? 0 : 4);
     }
     
-    trackBackgroundRect.origin = CGPointMake(2, (self.bounds.size.height/2.0f) - (trackBackgroundRect.size.height/2.0f));
+    if (_isVertical) {
+        trackBackgroundRect.origin = CGPointMake((self.bounds.size.width/2.0f) - (trackBackgroundRect.size.width/2.0f), 2);
+    }
+    else {
+        trackBackgroundRect.origin = CGPointMake(2, (self.bounds.size.height/2.0f) - (trackBackgroundRect.size.height/2.0f));
+    }
     
     return trackBackgroundRect;
 }
@@ -318,19 +396,35 @@
 {
     CGRect thumbRect;
     UIEdgeInsets insets = thumbImage.capInsets;
-
+    
     thumbRect.size = CGSizeMake(thumbImage.size.width, thumbImage.size.height);
     
-    if(insets.top || insets.bottom)
-    {
-        thumbRect.size.height=self.bounds.size.height;
+    if (_isVertical) {
+        if(insets.left || insets.right)
+        {
+            thumbRect.size.width=self.bounds.size.width;
+        }
+    }
+    else {
+        if(insets.top || insets.bottom)
+        {
+            thumbRect.size.height=self.bounds.size.height;
+        }
     }
     
-    float xValue = ((self.bounds.size.width-thumbRect.size.width)*((value - _minimumValue) / (_maximumValue - _minimumValue)));
-    thumbRect.origin = CGPointMake(xValue, (self.bounds.size.height/2.0f) - (thumbRect.size.height/2.0f));
+    if (_isVertical) {
+        float yValue = ((self.bounds.size.height-thumbRect.size.height)*((value - _minimumValue) / (_maximumValue - _minimumValue)));
+        thumbRect.origin = CGPointMake((self.bounds.size.width/2.0f) - (thumbRect.size.width/2.0f), yValue);
+        
+        return thumbRect;
+    }
+    else {
+        float xValue = ((self.bounds.size.width-thumbRect.size.width)*((value - _minimumValue) / (_maximumValue - _minimumValue)));
+        thumbRect.origin = CGPointMake(xValue, (self.bounds.size.height/2.0f) - (thumbRect.size.height/2.0f));
+        
+        return thumbRect;
+    }
     
-    return thumbRect;
-
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -375,8 +469,8 @@
         _haveAddedSubviews=YES;
         [self addSubviews];
     }
-
-
+    
+    
     self.trackBackground.frame = [self trackBackgroundRect];
     self.track.frame = [self trackRect];
     self.lowerHandle.frame = [self thumbRectForValue:_lowerValue image:self.lowerHandleImageNormal];
@@ -415,13 +509,13 @@
     if(CGRectContainsPoint([self touchRectForHandle:_lowerHandle], touchPoint))
     {
         _lowerHandle.highlighted = YES;
-        _lowerTouchOffset = touchPoint.x - _lowerHandle.center.x;
+        _lowerTouchOffset = _isVertical ? touchPoint.y - _lowerHandle.center.y : touchPoint.x - _lowerHandle.center.x;
     }
     
     if(CGRectContainsPoint([self touchRectForHandle:_upperHandle], touchPoint))
     {
         _upperHandle.highlighted = YES;
-        _upperTouchOffset = touchPoint.x - _upperHandle.center.x;
+        _upperTouchOffset = _isVertical ? touchPoint.y - _upperHandle.center.y : touchPoint.x - _upperHandle.center.x;
     }
     
     _stepValueInternal= _stepValueContinuously ? _stepValue : 0.0f;
@@ -442,7 +536,13 @@
     {
         //get new lower value based on the touch location.
         //This is automatically contained within a valid range.
-        float newValue = [self lowerValueForCenterX:(touchPoint.x - _lowerTouchOffset)];
+        float newValue;
+        if (_isVertical) {
+            newValue = [self lowerValueForCenterY:(touchPoint.y - _lowerTouchOffset)];
+        }
+        else {
+            newValue = [self lowerValueForCenterX:(touchPoint.x - _lowerTouchOffset)];
+        }
         
         //if both upper and lower is selected, then the new value must be LOWER
         //otherwise the touch event is ignored.
@@ -461,8 +561,14 @@
     
     if(_upperHandle.highlighted )
     {
-        float newValue = [self upperValueForCenterX:(touchPoint.x - _upperTouchOffset)];
-
+        float newValue;
+        if (_isVertical) {
+            newValue = [self upperValueForCenterY:(touchPoint.y - _upperTouchOffset)];
+        }
+        else {
+            newValue = [self upperValueForCenterX:(touchPoint.x - _upperTouchOffset)];
+        }
+        
         //if both upper and lower is selected, then the new value must be HIGHER
         //otherwise the touch event is ignored.
         if(!_lowerHandle.highlighted || newValue>_upperValue)
@@ -476,7 +582,7 @@
             _upperHandle.highlighted=NO;
         }
     }
-     
+    
     
     //send the control event
     if(_continuous)
@@ -486,7 +592,7 @@
     
     //redraw
     [self setNeedsLayout];
-
+    
     return YES;
 }
 

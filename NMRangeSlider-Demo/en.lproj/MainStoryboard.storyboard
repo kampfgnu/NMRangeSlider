@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="COa-Gf-kKZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="COa-Gf-kKZ">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--DemoTVC-->
         <scene sceneID="LGe-z7-xyS">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="M4v-jO-gTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="lKo-U9-UYs" customClass="NMDemoTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Ot3-ln-JyQ">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -261,7 +260,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="oUl-dj-JQP">
-                                        <rect key="frame" x="0.0" y="702" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="702" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
@@ -269,6 +268,22 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="kNU-cH-scq" customClass="NMRangeSlider">
                                                     <rect key="frame" x="13" y="6" width="275" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="200" id="pAE-zX-wAh">
+                                        <rect key="frame" x="0.0" y="746" width="320" height="201"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="199"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" id="spV-71-diF" customClass="NMRangeSlider">
+                                                    <rect key="frame" x="13" y="6" width="70" height="180"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                 </view>
@@ -307,15 +322,16 @@
                         <outlet property="steppedContinuouslySlider" destination="kNU-cH-scq" id="SvL-9c-azU"/>
                         <outlet property="steppedSlider" destination="DjS-dB-nvq" id="OPF-iT-8nt"/>
                         <outlet property="upperLabel" destination="fzv-24-dfp" id="Wc1-Jt-c2R"/>
+                        <outlet property="verticalSlider" destination="spV-71-diF" id="mN7-Sv-VDc"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M4v-jO-gTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="798" y="97"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Mpn-5O-gwU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XJA-bx-Pe2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="COa-Gf-kKZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="799-XK-cre">
@@ -328,6 +344,7 @@
                         <segue destination="lKo-U9-UYs" kind="relationship" relationship="rootViewController" id="8pW-DK-YdO"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XJA-bx-Pe2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="272" y="97"/>
         </scene>
@@ -348,6 +365,7 @@
                 <relationship kind="outlet" name="steppedContinuouslySlider" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="steppedSlider" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="upperLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="verticalSlider" candidateClass="NMRangeSlider"/>
             </relationships>
         </class>
         <class className="NMRangeSlider" superclassName="UIControl">
