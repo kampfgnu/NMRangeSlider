@@ -18,6 +18,8 @@
 
 @property (retain, nonatomic) UIImageView* track;
 @property (retain, nonatomic) UIImageView* trackBackground;
+@property (retain, nonatomic) UIImageView* lowerHandle;
+@property (retain, nonatomic) UIImageView* upperHandle;
 
 @end
 
@@ -65,6 +67,7 @@
     _upperValue = 1.0;
     
     _isVertical = NO;
+    _useLabels = NO;
     
     _themeName = @"default";
 }
@@ -448,10 +451,33 @@
     self.lowerHandle = [[UIImageView alloc] initWithImage:self.lowerHandleImageNormal highlightedImage:self.lowerHandleImageHighlighted];
     self.lowerHandle.frame = [self thumbRectForValue:_lowerValue image:self.lowerHandleImageNormal];
     
+    if (_useLabels) {
+        _lowerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.lowerHandle.frame.size.width, self.lowerHandle.frame.size.height)];
+        _lowerLabel.userInteractionEnabled = NO;
+        _lowerLabel.textColor = [UIColor whiteColor];
+        _lowerLabel.font = [UIFont systemFontOfSize:10];
+        _lowerLabel.textAlignment = NSTextAlignmentRight;
+        _lowerLabel.backgroundColor = [UIColor clearColor];
+        _lowerLabel.text = [NSString stringWithFormat:@"%i", (int)_lowerValue];
+
+        [_lowerHandle addSubview:_lowerLabel];
+    }
+    
     //------------------------------
     // Upper Handle Handle
     self.upperHandle = [[UIImageView alloc] initWithImage:self.upperHandleImageNormal highlightedImage:self.upperHandleImageHighlighted];
     self.upperHandle.frame = [self thumbRectForValue:_upperValue image:self.upperHandleImageNormal];
+    
+    if (_useLabels) {
+        _upperLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.upperHandle.frame.size.width, self.upperHandle.frame.size.height)];
+        _upperLabel.userInteractionEnabled = NO;
+        _upperLabel.textColor = [UIColor whiteColor];
+        _upperLabel.font = [UIFont systemFontOfSize:10];
+        _upperLabel.textAlignment = NSTextAlignmentLeft;
+        _upperLabel.backgroundColor = [UIColor clearColor];
+        _upperLabel.text = [NSString stringWithFormat:@"%i", (int)_upperValue];
+        [_upperHandle addSubview:_upperLabel];
+    }
     
     [self addSubview:self.trackBackground];
     [self addSubview:self.track];
@@ -485,8 +511,8 @@
 // TODO: Do it the correct way. I think wwdc 2012 had a video on it...
 - (CGRect) touchRectForHandle:(UIImageView*) handleImageView
 {
-    float xPadding = 10;
-    float yPadding = 10; //(self.bounds.size.height-touchRect.size.height)/2.0f
+    float xPadding = 20;
+    float yPadding = 20; //(self.bounds.size.height-touchRect.size.height)/2.0f
     
     CGRect touchRect = handleImageView.frame;
     touchRect.origin.x -= xPadding/2.0;

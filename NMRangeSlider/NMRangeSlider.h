@@ -14,6 +14,9 @@
 //If YES will draw vertical slider (and therefore use vertical images)
 @property(assign, nonatomic) BOOL isVertical;
 
+//If YES will draw labels on handels (have to be set in value changed)
+@property(assign, nonatomic) BOOL useLabels;
+
 //theme name (for images)
 @property(nonatomic, strong) NSString *themeName;
 
@@ -54,8 +57,8 @@
 // If they are not set, then the default images are used.
 // eg viewDidLoad
 
-@property (retain, nonatomic) UIImageView* lowerHandle;
-@property (retain, nonatomic) UIImageView* upperHandle;
+@property (nonatomic, strong) UILabel *lowerLabel;
+@property (nonatomic, strong) UILabel *upperLabel;
 
 //Probably should add support for all control states... Anyone?
 
