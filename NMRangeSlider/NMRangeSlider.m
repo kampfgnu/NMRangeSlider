@@ -458,7 +458,7 @@
         _lowerLabel.font = [UIFont systemFontOfSize:10];
         _lowerLabel.textAlignment = NSTextAlignmentRight;
         _lowerLabel.backgroundColor = [UIColor clearColor];
-        _lowerLabel.text = [NSString stringWithFormat:@"%i", (int)_lowerValue];
+        _lowerLabel.text = [NSString stringWithFormat:@"%i", (int)_maximumValue - (int)_lowerValue];
 
         [_lowerHandle addSubview:_lowerLabel];
     }
@@ -475,7 +475,7 @@
         _upperLabel.font = [UIFont systemFontOfSize:10];
         _upperLabel.textAlignment = NSTextAlignmentLeft;
         _upperLabel.backgroundColor = [UIColor clearColor];
-        _upperLabel.text = [NSString stringWithFormat:@"%i", (int)_upperValue];
+        _upperLabel.text = [NSString stringWithFormat:@"%i", (int)_maximumValue - (int)_upperValue];
         [_upperHandle addSubview:_upperLabel];
     }
     
