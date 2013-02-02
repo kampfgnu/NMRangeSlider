@@ -31,6 +31,7 @@
     [self configureSteppedSlider];
     [self configureSteppedSliderAlternative];
     [self configureVerticalSlider];
+    [self configureVerticalLabeledSlider];
 }
 
 
@@ -80,18 +81,38 @@
 {
 //    self.verticalSlider.lowerValue = 0.23;
 //    self.verticalSlider.upperValue = 0.53;
-    self.labelSlider.minimumValue = 0;
-    self.labelSlider.maximumValue = 1000;
+    self.verticalSlider.minimumValue = 0;
+    self.verticalSlider.maximumValue = 1000;
     
-    self.labelSlider.lowerValue = 0;
-    self.labelSlider.upperValue = 1000;
+    self.verticalSlider.lowerValue = 0;
+    self.verticalSlider.upperValue = 1000;
     
-    self.labelSlider.minimumRange = 1;
+    self.verticalSlider.minimumRange = 1;
     
     self.verticalSlider.isVertical = YES;
     self.verticalSlider.themeName = @"khm";
-    self.verticalSlider.stepValue = 1/1000;
-    self.verticalSlider.stepValueContinuously = YES;
+    self.verticalSlider.stepValue = 1;
+    self.verticalSlider.stepValueContinuously = NO;
+}
+
+#pragma mark -
+#pragma mark - Vertical Slider with Labels
+
+- (void) configureVerticalLabeledSlider
+{
+    self.verticalLabeledSlider.minimumValue = 0;
+    self.verticalLabeledSlider.maximumValue = 1000;
+    
+    self.verticalLabeledSlider.lowerValue = 0;
+    self.verticalLabeledSlider.upperValue = 1000;
+    
+    self.verticalLabeledSlider.minimumRange = 1;
+    
+    self.verticalLabeledSlider.isVertical = YES;
+    self.verticalLabeledSlider.useLabels = YES;
+    self.verticalLabeledSlider.themeName = @"khm";
+    self.verticalLabeledSlider.stepValue = 1;
+    self.verticalLabeledSlider.stepValueContinuously = NO;
 }
 
 
@@ -166,6 +187,12 @@
 - (IBAction)labelSliderChanged:(NMRangeSlider*)sender
 {
     [self updateSliderLabels];
+}
+
+- (IBAction)verticalLabeledSliderChanged:(NMRangeSlider*)sender
+{
+    self.verticalLabeledSlider.lowerLabel.text = [NSString stringWithFormat:@"%i", (int)self.verticalLabeledSlider.maximumValue - (int)self.verticalLabeledSlider.lowerValue];
+    self.verticalLabeledSlider.upperLabel.text = [NSString stringWithFormat:@"%i", (int)self.verticalLabeledSlider.maximumValue - (int)self.verticalLabeledSlider.upperValue];
 }
 
 // ------------------------------------------------------------------------------------------------------

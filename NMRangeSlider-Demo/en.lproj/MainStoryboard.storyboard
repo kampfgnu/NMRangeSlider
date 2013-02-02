@@ -260,7 +260,7 @@
                                         </view>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="oUl-dj-JQP">
-                                        <rect key="frame" x="0.0" y="702" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="702" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
@@ -275,17 +275,80 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="200" id="pAE-zX-wAh">
-                                        <rect key="frame" x="0.0" y="746" width="320" height="201"/>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="VYn-wS-qpg">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="E2X-pN-lfd" style="IBUITableViewCellStyleDefault" id="R25-Xp-Snr">
+                                        <rect key="frame" x="0.0" y="767" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Vertical Slider" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E2X-pN-lfd">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="200" id="XbZ-tF-tnJ">
+                                        <rect key="frame" x="0.0" y="812" width="320" height="201"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="199"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="spV-71-diF" customClass="NMRangeSlider">
-                                                    <rect key="frame" x="13" y="6" width="70" height="180"/>
+                                                    <rect key="frame" x="115" y="10" width="70" height="180"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="YZd-XS-sYP">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="B0P-iH-YVQ" style="IBUITableViewCellStyleDefault" id="NMd-DP-M7D">
+                                        <rect key="frame" x="0.0" y="1033" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Vertical Slider (labeled)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B0P-iH-YVQ">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="200" id="ZqU-Ih-KsJ">
+                                        <rect key="frame" x="0.0" y="1078" width="320" height="201"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="199"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" id="NVb-2I-t3U" customClass="NMRangeSlider">
+                                                    <rect key="frame" x="115" y="10" width="70" height="180"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                    <connections>
+                                                        <action selector="verticalLabeledSliderChanged:" destination="lKo-U9-UYs" eventType="valueChanged" id="g2q-Z3-Lg6"/>
+                                                    </connections>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -322,6 +385,7 @@
                         <outlet property="steppedContinuouslySlider" destination="kNU-cH-scq" id="SvL-9c-azU"/>
                         <outlet property="steppedSlider" destination="DjS-dB-nvq" id="OPF-iT-8nt"/>
                         <outlet property="upperLabel" destination="fzv-24-dfp" id="Wc1-Jt-c2R"/>
+                        <outlet property="verticalLabeledSlider" destination="NVb-2I-t3U" id="b1f-ZB-dba"/>
                         <outlet property="verticalSlider" destination="spV-71-diF" id="mN7-Sv-VDc"/>
                     </connections>
                 </tableViewController>
@@ -357,7 +421,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NMDemoTVC.h"/>
             <relationships>
                 <relationship kind="action" name="labelSliderChanged:" candidateClass="NMRangeSlider"/>
-                <relationship kind="action" name="verticalLabeledSliderChanged:" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="labelSlider" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="lowerLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="metalSlider" candidateClass="NMRangeSlider"/>
@@ -366,6 +429,7 @@
                 <relationship kind="outlet" name="steppedContinuouslySlider" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="steppedSlider" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="upperLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="verticalLabeledSlider" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="verticalSlider" candidateClass="NMRangeSlider"/>
             </relationships>
         </class>
