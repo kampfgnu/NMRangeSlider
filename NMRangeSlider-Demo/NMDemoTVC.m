@@ -113,6 +113,15 @@
     self.verticalLabeledSlider.themeName = @"khm";
     self.verticalLabeledSlider.stepValue = 1;
     self.verticalLabeledSlider.stepValueContinuously = NO;
+    self.verticalLabeledSlider.delegate = self;
+}
+
+- (NSString *)textForLowerLabelOfSlider:(NMRangeSlider *)slider {
+    return [NSString stringWithFormat:@"%d", (int)slider.lowerValue];
+}
+
+- (NSString *)textForUpperLabelOfSlider:(NMRangeSlider *)slider {
+    return [NSString stringWithFormat:@"%d", (int)slider.upperValue];
 }
 
 

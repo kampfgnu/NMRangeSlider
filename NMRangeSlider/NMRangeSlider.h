@@ -9,7 +9,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol NMRangeSliderDelegate;
+
 @interface NMRangeSlider : UIControl
+
+@property (nonatomic, unsafe_unretained) id<NMRangeSliderDelegate> delegate;
 
 //If YES will draw vertical slider (and therefore use vertical images)
 @property(assign, nonatomic) BOOL isVertical;
@@ -80,4 +84,11 @@
 
 - (void) setLowerValue:(float) lowerValue upperValue:(float) upperValue animated:(BOOL)animated;
 
+@end
+
+
+@protocol NMRangeSliderDelegate <NSObject>
+@optional
+- (NSString *)textForLowerLabelOfSlider:(NMRangeSlider *)slider;
+- (NSString *)textForUpperLabelOfSlider:(NMRangeSlider *)slider;
 @end

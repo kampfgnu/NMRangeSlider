@@ -459,6 +459,10 @@
         _lowerLabel.textAlignment = NSTextAlignmentRight;
         _lowerLabel.backgroundColor = [UIColor clearColor];
         _lowerLabel.text = [NSString stringWithFormat:@"%i", (int)_maximumValue - (int)_lowerValue];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(textForLowerLabelOfSlider:)]) {
+            _lowerLabel.text = [self.delegate textForLowerLabelOfSlider:self];
+        }
 
         [_lowerHandle addSubview:_lowerLabel];
     }
@@ -476,6 +480,11 @@
         _upperLabel.textAlignment = NSTextAlignmentLeft;
         _upperLabel.backgroundColor = [UIColor clearColor];
         _upperLabel.text = [NSString stringWithFormat:@"%i", (int)_maximumValue - (int)_upperValue];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(textForUpperLabelOfSlider:)]) {
+            _upperLabel.text = [self.delegate textForUpperLabelOfSlider:self];
+        }
+        
         [_upperHandle addSubview:_upperLabel];
     }
     
