@@ -91,4 +91,5 @@
 @optional
 - (NSString *)textForLowerLabelOfSlider:(NMRangeSlider *)slider;
 - (NSString *)textForUpperLabelOfSlider:(NMRangeSlider *)slider;
+- (UIFont *)fontForLabelsOfSlider:(NMRangeSlider *)slider;
 @end

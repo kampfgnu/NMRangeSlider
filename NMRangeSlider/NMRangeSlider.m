@@ -452,16 +452,22 @@
     self.lowerHandle.frame = [self thumbRectForValue:_lowerValue image:self.lowerHandleImageNormal];
     
     if (_useLabels) {
-        _lowerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.lowerHandle.frame.size.width, self.lowerHandle.frame.size.height)];
+        _lowerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.lowerHandle.frame.size.width-2, self.lowerHandle.frame.size.height)];
         _lowerLabel.userInteractionEnabled = NO;
         _lowerLabel.textColor = [UIColor whiteColor];
-        _lowerLabel.font = [UIFont systemFontOfSize:10];
+        _lowerLabel.font = [UIFont boldSystemFontOfSize:10];
         _lowerLabel.textAlignment = NSTextAlignmentRight;
         _lowerLabel.backgroundColor = [UIColor clearColor];
         _lowerLabel.text = [NSString stringWithFormat:@"%i", (int)_maximumValue - (int)_lowerValue];
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(textForLowerLabelOfSlider:)]) {
             _lowerLabel.text = [self.delegate textForLowerLabelOfSlider:self];
+        }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(fontForLabelsOfSlider:)]) {
+            UIFont *newFont = [self.delegate fontForLabelsOfSlider:self];
+            CGFloat topAdder = _lowerLabel.font.ascender - newFont.ascender;
+            _lowerLabel.font = newFont;
+            _lowerLabel.frameTop += topAdder;
         }
 
         [_lowerHandle addSubview:_lowerLabel];
@@ -473,16 +479,22 @@
     self.upperHandle.frame = [self thumbRectForValue:_upperValue image:self.upperHandleImageNormal];
     
     if (_useLabels) {
-        _upperLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.upperHandle.frame.size.width, self.upperHandle.frame.size.height)];
+        _upperLabel = [[UILabel alloc] initWithFrame:CGRectMake(2, 0, self.upperHandle.frame.size.width-2, self.upperHandle.frame.size.height)];
         _upperLabel.userInteractionEnabled = NO;
         _upperLabel.textColor = [UIColor whiteColor];
-        _upperLabel.font = [UIFont systemFontOfSize:10];
+        _upperLabel.font = [UIFont boldSystemFontOfSize:10];
         _upperLabel.textAlignment = NSTextAlignmentLeft;
         _upperLabel.backgroundColor = [UIColor clearColor];
         _upperLabel.text = [NSString stringWithFormat:@"%i", (int)_maximumValue - (int)_upperValue];
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(textForUpperLabelOfSlider:)]) {
             _upperLabel.text = [self.delegate textForUpperLabelOfSlider:self];
+        }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(fontForLabelsOfSlider:)]) {
+            UIFont *newFont = [self.delegate fontForLabelsOfSlider:self];
+            CGFloat topAdder = _upperLabel.font.ascender - newFont.ascender;
+            _upperLabel.font = newFont;
+            _upperLabel.frameTop += topAdder;
         }
         
         [_upperHandle addSubview:_upperLabel];
